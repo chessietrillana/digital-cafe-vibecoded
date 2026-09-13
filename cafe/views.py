@@ -7,10 +7,11 @@ from .forms import AddToCartForm
 from .models import CartItem, Order, OrderLine, Product
 
 
-@login_required
 def home(request):
     products = Product.objects.filter(is_active=True).order_by("name")
-    greeting_name = request.user.first_name or request.user.username
+    greeting_name = None
+    if request.user.is_authenticated:
+        greeting_name = request.user.first_name or request.user.username
     return render(
         request,
         "cafe/home.html",
@@ -18,7 +19,6 @@ def home(request):
     )
 
 
-@login_required
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     form = AddToCartForm()
