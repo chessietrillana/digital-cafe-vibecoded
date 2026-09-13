@@ -1,13 +1,23 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
 from .models import CartItem, Order, OrderLine, Product
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "is_active", "created_at")
+    list_display = ("thumbnail", "name", "price", "is_active", "created_at")
     list_filter = ("is_active",)
     search_fields = ("name",)
+
+    @admin.display(description="Image")
+    def thumbnail(self, obj):
+        if not obj.image:
+            return "—"
+        return format_html(
+            '<img src="{}" style="height:40px;width:40px;object-fit:cover;border-radius:4px;">',
+            obj.image.url,
+        )
 
 
 @admin.register(CartItem)

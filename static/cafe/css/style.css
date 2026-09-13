@@ -171,6 +171,45 @@ form[style*="display:inline"] {
     font-size: 1.1rem;
 }
 
+/* Product images */
+
+.product-media-thumb,
+.product-media-large {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    object-fit: cover;
+    background-color: var(--color-surface);
+    margin-bottom: 0.75rem;
+}
+
+.product-media-thumb {
+    height: 140px;
+}
+
+.product-media-large {
+    height: 260px;
+    margin-bottom: 1rem;
+}
+
+.product-image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    border-style: dashed;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.product-image-placeholder svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--color-caramel);
+}
+
 /* Tables (cart) */
 
 table {

@@ -9,6 +9,11 @@
 <ul class="product-list">
     {% for product in products %}
     <li class="product-card">
+        {% if product.image %}
+        <img class="product-media-thumb" src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+        {% include "cafe/_image_placeholder.html" with media_class="product-media-thumb" %}
+        {% endif %}
         <a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a>
         — ${{ product.price }}
     </li>
