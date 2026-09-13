@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Home — Digital Cafe{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ greeting_name }}!</h2>
+
+{% if products %}
+<ul>
+    {% for product in products %}
+    <li>
+        <a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a>
+        — ${{ product.price }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No products available right now.</p>
+{% endif %}
+{% endblock %}
