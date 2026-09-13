@@ -3,7 +3,11 @@
 {% block title %}Home — Digital Cafe{% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <h2>Welcome, {{ greeting_name }}!</h2>
+{% else %}
+<h2>Welcome to Digital Cafe</h2>
+{% endif %}
 
 <h2>Chessie's Digital Cafe Menu</h2>
 
