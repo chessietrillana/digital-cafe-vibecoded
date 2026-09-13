@@ -163,7 +163,13 @@ form[style*="display:inline"] {
     list-style: none;
     padding: 0;
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card a {
@@ -185,7 +191,8 @@ form[style*="display:inline"] {
 }
 
 .product-media-thumb {
-    height: 140px;
+    aspect-ratio: 1 / 1;
+    height: auto;
 }
 
 .product-media-large {
