@@ -4,6 +4,11 @@
 
 {% block content %}
 <div class="card">
+    {% if product.image %}
+    <img class="product-media-large" src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}
+    {% include "cafe/_image_placeholder.html" with media_class="product-media-large" %}
+    {% endif %}
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
     <p>Price: ${{ product.price }}</p>
