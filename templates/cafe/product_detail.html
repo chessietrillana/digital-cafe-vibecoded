@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} — Digital Cafe{% endblock %}
+
+{% block content %}
+<h2>{{ product.name }}</h2>
+<p>{{ product.description }}</p>
+<p>Price: ${{ product.price }}</p>
+
+{% if product.is_active %}
+<form method="post" action="{% url 'add_to_cart' product.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add to cart</button>
+</form>
+{% else %}
+<p>This product is currently unavailable.</p>
+{% endif %}
+
+<p><a href="{% url 'home' %}">Back to home</a></p>
+{% endblock %}
