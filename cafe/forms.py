@@ -7,6 +7,10 @@ class AddToCartForm(forms.Form):
     quantity = forms.IntegerField(min_value=1, initial=1)
 
 
+class SearchForm(forms.Form):
+    q = forms.CharField(required=False)
+
+
 class SignupForm(UserCreationForm):
     first_name = forms.CharField(required=False)
 
