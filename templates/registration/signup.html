@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Log in — Digital Cafe{% endblock %}
+{% block title %}Sign up — Digital Cafe{% endblock %}
 
 {% block content %}
 <div class="card">
-    <h2>Log in</h2>
+    <h2>Sign up</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="hidden" name="next" value="{{ next }}">
-        <button type="submit">Log in</button>
+        <button type="submit">Sign up</button>
     </form>
-    <p><a href="{% url 'signup' %}?next={{ next|urlencode }}">Don't have an account? Sign up</a></p>
+    <p><a href="{% url 'login' %}?next={{ next|urlencode }}">Already have an account? Log in</a></p>
 </div>
 {% endblock %}

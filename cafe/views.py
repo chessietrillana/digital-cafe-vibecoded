@@ -1,9 +1,11 @@
 from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.http import url_has_allowed_host_and_scheme
 
-from .forms import AddToCartForm
+from .forms import AddToCartForm, SignupForm
 from .models import CartItem, Order, OrderLine, Product
 
 
@@ -17,6 +19,25 @@ def home(request):
         "cafe/home.html",
         {"products": products, "greeting_name": greeting_name},
     )
+
+
+def signup(request):
+    next_url = request.POST.get("next") or request.GET.get("next", "")
+
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            if next_url and url_has_allowed_host_and_scheme(
+                next_url, allowed_hosts={request.get_host()}, require_https=request.is_secure()
+            ):
+                return redirect(next_url)
+            return redirect("home")
+    else:
+        form = SignupForm()
+
+    return render(request, "registration/signup.html", {"form": form, "next": next_url})
 
 
 def product_detail(request, pk):
