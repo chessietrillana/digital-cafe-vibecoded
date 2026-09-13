@@ -20,21 +20,26 @@ python manage.py migrate
 
 ## Creating accounts
 
-There is no public signup page. You need at least:
+You need at least one superuser, for Django admin (managing products,
+and for troubleshooting cart/order/user data):
 
-1. **A superuser**, for Django admin (managing products, and for
-   troubleshooting cart/order data):
+```bash
+python manage.py createsuperuser
+```
 
-   ```bash
-   python manage.py createsuperuser
-   ```
+**Regular customer accounts don't need to be created manually** —
+anyone can self-register at `/accounts/signup/` (username, optional
+first name, password), which also logs them straight in. That's the
+normal path now; only use Django admin's **Authentication and
+Authorization → Users → Add user** if you specifically want to create a
+customer account yourself (e.g. test data) without going through the
+signup form. Either way, set a `First name` if you want the home page's
+"Welcome, {name}!" greeting to use a name rather than the username — the
+signup form collects this directly; admin-created accounts need it set
+manually.
 
-2. **At least one regular customer account**, since customers can't
-   self-register. Easiest way: log into `/admin/` as the superuser above,
-   go to **Authentication and Authorization → Users → Add user**, and
-   create a plain (non-staff, non-superuser) user. Set a `First name` if
-   you want the home page's "Welcome, {name}!" greeting to use a name
-   rather than the username.
+Signup never grants staff/superuser status — that's still
+`createsuperuser`/admin-only.
 
 ## Adding products
 
@@ -56,7 +61,7 @@ a placeholder on the home and detail pages instead of a broken image.
 python manage.py runserver
 ```
 
-Visit `http://127.0.0.1:8000/` — you'll be redirected to
-`/accounts/login/` immediately, since there's no public browsing before
-login. Log in with a customer account to see the storefront, or go to
-`/admin/` directly with the superuser account.
+Visit `http://127.0.0.1:8000/` — the home page and product detail pages
+are visible without logging in. Log in (or sign up) to add items to a
+cart and check out, or go to `/admin/` directly with the superuser
+account.

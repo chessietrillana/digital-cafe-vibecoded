@@ -7,11 +7,13 @@ the catalog and order data via Django admin.
 
 **Browsing is public** (home page + product detail) — see
 `doc/wiki/routes.md` for exactly which routes require login and which
-don't. There is **no public signup page** — customer accounts are
-created by a superuser via Django admin (or `createsuperuser`/the admin
-"Add user" form); an anonymous visitor who wants to order sees a
-"Log in" link in the nav and, on a product page, a "Log in to add this
-to your cart" prompt in place of the add-to-cart form.
+don't. Customers can **self-register** at `/accounts/signup/` (username,
+optional first name, password — no email), which logs them in
+immediately; a superuser can still create accounts via Django admin
+(or `createsuperuser`) too, and that remains the only way to create a
+*staff/superuser* account, since signup never grants those. An
+anonymous visitor sees "Log in" and "Sign up" links in the nav and, on
+a product page, both offered in place of the add-to-cart form.
 
 ## Tech stack
 
@@ -32,6 +34,8 @@ to your cart" prompt in place of the add-to-cart form.
   - `templates/base.html` — shared layout (nav, messages).
   - `templates/registration/login.html` — overrides Django's default
     login template.
+  - `templates/registration/signup.html` — signup page (custom view,
+    Django has no built-in signup URL/view to override).
   - `templates/cafe/` — app-specific page templates.
 - `doc/study/`, `doc/plan/` — design history for each feature (see
   `0001-digital-cafe-mvp.md` in each for the reasoning behind the
