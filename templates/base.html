@@ -12,17 +12,19 @@
 <body>
     <header>
         <h1>Digital Cafe</h1>
-        {% if user.is_authenticated %}
         <nav>
             <a href="{% url 'home' %}">Home</a>
+            {% if user.is_authenticated %}
             <a href="{% url 'cart' %}">Cart</a>
             <a href="{% url 'order_history' %}">Order History</a>
             <form method="post" action="{% url 'logout' %}" style="display:inline">
                 {% csrf_token %}
                 <button type="submit">Log out</button>
             </form>
+            {% else %}
+            <a href="{% url 'login' %}">Log in</a>
+            {% endif %}
         </nav>
-        {% endif %}
     </header>
     {% if messages %}
     <ul class="messages">
