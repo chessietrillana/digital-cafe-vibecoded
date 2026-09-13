@@ -5,19 +5,28 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import url_has_allowed_host_and_scheme
 
-from .forms import AddToCartForm, SignupForm
+from .forms import AddToCartForm, SearchForm, SignupForm
 from .models import CartItem, Order, OrderLine, Product
 
 
 def home(request):
-    products = Product.objects.filter(is_active=True).order_by("name")
+    search_form = SearchForm(request.GET)
+    query = ""
+    if search_form.is_valid():
+        query = search_form.cleaned_data["q"].strip()
+
+    products = Product.objects.filter(is_active=True)
+    if query:
+        products = products.filter(name__icontains=query)
+    products = products.order_by("name")
+
     greeting_name = None
     if request.user.is_authenticated:
         greeting_name = request.user.first_name or request.user.username
     return render(
         request,
         "cafe/home.html",
-        {"products": products, "greeting_name": greeting_name},
+        {"products": products, "greeting_name": greeting_name, "query": query},
     )
 
 
