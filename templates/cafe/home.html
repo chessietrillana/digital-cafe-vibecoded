@@ -11,6 +11,14 @@
 
 <h2>MENU:</h2>
 
+<form method="get" action="{% url 'home' %}">
+    <input type="text" name="q" value="{{ query }}" placeholder="Search products by name…">
+    <button type="submit">Search</button>
+</form>
+{% if query %}
+<p><a href="{% url 'home' %}">Clear search</a></p>
+{% endif %}
+
 {% if products %}
 <ul class="product-list">
     {% for product in products %}
@@ -25,6 +33,8 @@
     </li>
     {% endfor %}
 </ul>
+{% elif query %}
+<p>No products match "{{ query }}".</p>
 {% else %}
 <p>No products available right now.</p>
 {% endif %}
