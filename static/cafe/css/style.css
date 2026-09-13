@@ -10,6 +10,8 @@
     --color-text-muted: #7a6552;
     --radius: 10px;
     --spacing: 1.25rem;
+    --font-heading: "Playfair Display", Georgia, serif;
+    --font-body: "Nunito", sans-serif;
 }
 
 * {
@@ -18,7 +20,7 @@
 
 body {
     margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-body);
     background-color: var(--color-bg);
     color: var(--color-text);
     line-height: 1.6;
@@ -49,7 +51,7 @@ nav button {
     color: var(--color-bg);
     text-decoration: none;
     font-weight: bold;
-    font-family: inherit;
+    font-family: var(--font-heading);
 }
 
 nav button {
@@ -71,6 +73,12 @@ main {
     max-width: 900px;
     margin: 0 auto;
     padding: var(--spacing);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
 }
 
 h2,
