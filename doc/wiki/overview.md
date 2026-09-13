@@ -1,14 +1,17 @@
 # Digital Cafe — Overview
 
-Digital Cafe is a login-gated Django app for a coffee shop. A logged-in
-customer browses products, adds them to a cart, checks out into a
-permanent order, and can review past orders. A superuser manages the
-catalog and order data via Django admin.
+Digital Cafe is a Django app for a coffee shop. Anyone can browse the
+product catalog without logging in; logging in is only required to add
+items to a cart, check out, or view order history. A superuser manages
+the catalog and order data via Django admin.
 
-There is **no public browsing** — every customer-facing page requires
-login, and there is **no public signup page** — customer accounts are
+**Browsing is public** (home page + product detail) — see
+`doc/wiki/routes.md` for exactly which routes require login and which
+don't. There is **no public signup page** — customer accounts are
 created by a superuser via Django admin (or `createsuperuser`/the admin
-"Add user" form).
+"Add user" form); an anonymous visitor who wants to order sees a
+"Log in" link in the nav and, on a product page, a "Log in to add this
+to your cart" prompt in place of the add-to-cart form.
 
 ## Tech stack
 
