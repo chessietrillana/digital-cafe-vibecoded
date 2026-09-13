@@ -109,3 +109,13 @@ def checkout(request):
 
     messages.success(request, "Your order has been placed.")
     return redirect("order_history")
+
+
+@login_required
+def order_history(request):
+    orders = (
+        Order.objects.filter(user=request.user)
+        .order_by("-created_at")
+        .prefetch_related("orderline_set")
+    )
+    return render(request, "cafe/order_history.html", {"orders": orders})

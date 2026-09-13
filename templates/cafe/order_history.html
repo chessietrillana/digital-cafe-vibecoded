@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Order History — Digital Cafe{% endblock %}
+
+{% block content %}
+<h2>Order History</h2>
+
+{% if orders %}
+{% for order in orders %}
+<section>
+    <h3>Order #{{ order.id }} — {{ order.created_at }}</h3>
+    <ul>
+        {% for line in order.orderline_set.all %}
+        <li>{{ line.product_name }} — ${{ line.unit_price }} x {{ line.quantity }} = ${{ line.subtotal }}</li>
+        {% endfor %}
+    </ul>
+    <p>Order total: ${{ order.total }}</p>
+</section>
+{% endfor %}
+{% else %}
+<p>You haven't placed any orders yet.</p>
+{% endif %}
+
+<p><a href="{% url 'home' %}">Back to home</a></p>
+{% endblock %}
