@@ -1,0 +1,1 @@
+- [Flag, don't implement, open questions](feedback_flag_dont_implement_open_questions.md) — study docs shouldn't bake an unconfirmed decision into a schema elsewhere in the same doc.
