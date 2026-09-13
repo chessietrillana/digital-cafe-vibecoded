@@ -15,7 +15,7 @@
         {% include "cafe/_image_placeholder.html" with media_class="product-media-thumb" %}
         {% endif %}
         <a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a>
-        — ${{ product.price }}
+        — ₱{{ product.price }}
     </li>
     {% endfor %}
 </ul>

@@ -11,10 +11,10 @@
     <h3>Order #{{ order.id }} — {{ order.created_at }}</h3>
     <ul>
         {% for line in order.orderline_set.all %}
-        <li>{{ line.product_name }} — ${{ line.unit_price }} x {{ line.quantity }} = ${{ line.subtotal }}</li>
+        <li>{{ line.product_name }} — ₱{{ line.unit_price }} x {{ line.quantity }} = ₱{{ line.subtotal }}</li>
         {% endfor %}
     </ul>
-    <p>Order total: ${{ order.total }}</p>
+    <p>Order total: ₱{{ order.total }}</p>
 </section>
 {% endfor %}
 {% else %}
