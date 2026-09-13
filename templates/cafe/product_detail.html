@@ -13,14 +13,18 @@
     <p>{{ product.description }}</p>
     <p>Price: ₱{{ product.price }}</p>
 
-    {% if product.is_active %}
-    <form method="post" action="{% url 'add_to_cart' product.pk %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add to cart</button>
-    </form>
+    {% if user.is_authenticated %}
+        {% if product.is_active %}
+        <form method="post" action="{% url 'add_to_cart' product.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add to cart</button>
+        </form>
+        {% else %}
+        <p>This product is currently unavailable.</p>
+        {% endif %}
     {% else %}
-    <p>This product is currently unavailable.</p>
+    <p><a href="{% url 'login' %}?next={{ request.path|urlencode }}">Log in to add this to your cart</a></p>
     {% endif %}
 </div>
 
