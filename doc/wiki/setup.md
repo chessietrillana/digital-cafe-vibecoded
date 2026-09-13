@@ -42,6 +42,14 @@ Products aren't seeded automatically. Log into `/admin/` and add some
 under **Cafe → Products**. Only products with `is_active` checked show
 up on the customer-facing home page.
 
+Product images are optional and uploaded per-product from that same
+admin form. Uploaded files are written to `media/products/` (created
+automatically on first upload) and served locally via a dev-only route
+wired up in `digital_cafe/urls.py`. `media/` is gitignored, same as
+`db.sqlite3` — a fresh clone of this repo starts with no product images
+until someone uploads them through admin. A product with no image shows
+a placeholder on the home and detail pages instead of a broken image.
+
 ## Running the app
 
 ```bash

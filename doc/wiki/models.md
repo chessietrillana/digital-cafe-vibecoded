@@ -11,6 +11,7 @@ identified by `user`.
 | `name` | `CharField` | |
 | `description` | `TextField` | Optional (`blank=True`). |
 | `price` | `DecimalField(8, 2)` | Current price — see `OrderLine.unit_price` for what customers actually paid historically. |
+| `image` | `ImageField` | Optional (`blank=True`, no `null=True` — Django's own convention for `FileField`/`ImageField`, to avoid two representations of "no file"). Uploaded via Django admin, stored under `MEDIA_ROOT/products/`. Shown on the home page and product detail page only; not shown on the cart or order history pages, and **not snapshotted** onto `OrderLine` — unlike `price`, a product's photo isn't a financial/history integrity concern, so order history just doesn't display it at all. |
 | `is_active` | `BooleanField` | `False` hides it from the home page without deleting it. |
 | `created_at` | `DateTimeField` | Auto-set on creation. |
 
@@ -66,4 +67,6 @@ makes order history permanent and independent of later catalog changes.
 
 Full reasoning for each of these choices — including alternatives
 considered and rejected (session-based cart, a separate `Cart` model,
-stored totals) — is in `doc/study/0001-digital-cafe-mvp.md`.
+stored totals) — is in `doc/study/0001-digital-cafe-mvp.md`. The
+`image` field's reasoning (including the `URLField` alternative
+considered and not taken) is in `doc/study/0002-product-images.md`.
