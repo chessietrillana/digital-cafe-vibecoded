@@ -7,7 +7,7 @@
 
 {% if orders %}
 {% for order in orders %}
-<section>
+<section class="card">
     <h3>Order #{{ order.id }} — {{ order.created_at }}</h3>
     <ul>
         {% for line in order.orderline_set.all %}

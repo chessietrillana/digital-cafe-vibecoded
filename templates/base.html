@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Digital Cafe{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'cafe/css/style.css' %}">
 </head>
 <body>
     <header>
@@ -20,7 +22,7 @@
         {% endif %}
     </header>
     {% if messages %}
-    <ul>
+    <ul class="messages">
         {% for message in messages %}
         <li>{{ message }}</li>
         {% endfor %}

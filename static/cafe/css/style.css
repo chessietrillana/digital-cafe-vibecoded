@@ -1,0 +1,186 @@
+:root {
+    --color-bg: #faf3e7;
+    --color-surface: #fff8ef;
+    --color-border: #e3cba5;
+    --color-coffee: #4b3621;
+    --color-coffee-dark: #3b2a1e;
+    --color-caramel: #c08552;
+    --color-caramel-dark: #a66b3a;
+    --color-text: #3b2a1e;
+    --color-text-muted: #7a6552;
+    --radius: 10px;
+    --spacing: 1.25rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* Header / nav */
+
+header {
+    background-color: var(--color-coffee-dark);
+    color: var(--color-bg);
+    padding: 1.5rem var(--spacing);
+}
+
+header h1 {
+    margin: 0 0 0.75rem 0;
+    color: var(--color-bg);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+nav a,
+nav button {
+    color: var(--color-bg);
+    text-decoration: none;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+nav button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+nav a:hover,
+nav button:hover {
+    color: var(--color-caramel);
+}
+
+/* Layout */
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing);
+}
+
+h2,
+h3 {
+    color: var(--color-coffee-dark);
+}
+
+a {
+    color: var(--color-caramel-dark);
+}
+
+a:hover {
+    color: var(--color-caramel);
+}
+
+/* Messages */
+
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing) var(--spacing) 0;
+}
+
+.messages li {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-coffee-dark);
+}
+
+/* Buttons and inputs */
+
+button,
+input[type="submit"] {
+    background-color: var(--color-caramel);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.6rem 1.25rem;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: var(--color-caramel-dark);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 0.5rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+}
+
+form.inline,
+form[style*="display:inline"] {
+    display: inline;
+}
+
+/* Cards */
+
+.card,
+.product-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--spacing);
+    margin-bottom: 1rem;
+}
+
+.product-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.product-card a {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Tables (cart) */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+th {
+    background-color: var(--color-border);
+    color: var(--color-coffee-dark);
+}
